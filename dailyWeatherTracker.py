@@ -1,4 +1,6 @@
 import requests, csv, datetime
+from tabulate import tabulate
+import matplotlib.pyplot as plt
 
 APPID = "1017e9154bbf1417b440db46b410de3a"
 
@@ -20,6 +22,7 @@ url = "https://api.openweathermap.org/data/2.5/weather"
 today = datetime.date.today().isoformat()
 
 weather_data = []
+display_data = []
 
 for city in cities:
     params = city["query"].copy()
@@ -35,6 +38,16 @@ for city in cities:
         humidity = data["main"]["humidity"]
         wind_speed = data["wind"]["speed"]
 
+        display_data.append(
+            [
+                city_name,
+                f"{temp:.1f}°F",
+                condition.title(),
+                f"{humidity}%",
+                f"{wind_speed} mph",
+            ]
+        )
+
         print(
             f"{city_name}: {temp}°F, {condition.title()}, {humidity}% humidity, Wind {wind_speed} mph"
         )
@@ -45,6 +58,42 @@ for city in cities:
         weather_data.append([today, city_name, temp, condition, humidity, wind_speed])
     except Exception as e:
         print(f"Failed to get weather for {city}: {e}")
+
+print(tabulate(display_data, headers=["City", "Temp", "Condition", "Humidity", "Wind"]))
+
+# Plotting temperature and wind speed side by side
+cities_list = [row[0] for row in display_data]
+temps = [float(row[1].replace("°F", "")) for row in display_data]
+winds = [float(row[4].replace(" mph", "")) for row in display_data]
+x = range(len(cities_list))
+
+fig, ax1 = plt.subplots(figsize=(12, 6))
+
+# Temperature bars
+ax1.bar(x, temps, width=0.4, label="Temp (°F)", color="skyblue", align="center")
+ax1.set_xlabel("City")
+ax1.set_ylabel("Temperature (°F)", color="skyblue")
+ax1.tick_params(axis="y", labelcolor="skyblue")
+ax1.set_xticks(x)
+ax1.set_xticklabels(cities_list, rotation=45)
+
+# Wind speed bars (on right y-axis)
+ax2 = ax1.twinx()
+ax2.bar(
+    [i + 0.4 for i in x],
+    winds,
+    width=0.4,
+    label="Wind (mph)",
+    color="lightcoral",
+    align="center",
+)
+ax2.set_ylabel("Wind Speed (mph)", color="lightcoral")
+ax2.tick_params(axis="y", labelcolor="lightcoral")
+
+# Title and layout
+plt.title(f"Temp & Wind Speed by City – {today}")
+fig.tight_layout()
+plt.show()
 
 import os
 
