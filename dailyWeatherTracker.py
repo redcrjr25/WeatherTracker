@@ -1,21 +1,23 @@
 import requests, csv, datetime
 from tabulate import tabulate
 import matplotlib.pyplot as plt
+import gspread
+from oauth2client.service_account import ServiceAccountCredentials
 
 APPID = "1017e9154bbf1417b440db46b410de3a"
 
 cities = [
-    {"name": "Dublin", "query": {"q": "Dublin,IE"}},
     {"name": "Vatican City", "query": {"q": "Vatican City,VA"}},
     {"name": "Munich", "query": {"q": "Munich,DE"}},
+    {"name": "Dublin", "query": {"q": "Dublin,IE"}},
     {"name": "Portland", "query": {"q": "Portland,ME,US"}},
-    {"name": "Tampa", "query": {"q": "Tampa,US"}},
+    {"name": "Mt. Washington", "query": {"lat": 44.2706, "lon": -71.3033}},
+    {"name": "New York", "query": {"q": "New York,US"}},
     {"name": "Cleveland", "query": {"q": "Cleveland,US"}},
     {"name": "Indianapolis", "query": {"q": "Indianapolis,US"}},
     {"name": "Chicago", "query": {"q": "Chicago,US"}},
-    {"name": "New York", "query": {"q": "New York,US"}},
     {"name": "Grand Canyon", "query": {"q": "Grand Canyon,US"}},
-    {"name": "Mt. Washington", "query": {"lat": 44.2706, "lon": -71.3033}},
+    {"name": "Anchorage", "query": {"q": "Anchorage,AK,US"}},
 ]
 
 url = "https://api.openweathermap.org/data/2.5/weather"
@@ -110,3 +112,30 @@ with open(filename, "a", newline="") as file:
     writer.writerows(weather_data)
 
 print(f"\n✅ Weather data logged to {filename}")
+
+# --- START Google Sheets Upload ---
+# Google Sheets auth and setup
+scope = [
+    "https://spreadsheets.google.com/feeds",
+    "https://www.googleapis.com/auth/drive",
+]
+creds = ServiceAccountCredentials.from_json_keyfile_name("weather-creds.json", scope)
+client = gspread.authorize(creds)
+
+# Open or create the spreadsheet
+spreadsheet = client.open("Daily Weather Log")
+print("Google Sheet URL:", spreadsheet.url)
+try:
+    sheet = spreadsheet.worksheet("Weather")
+except gspread.exceptions.WorksheetNotFound:
+    sheet = spreadsheet.add_worksheet(title="Weather", rows="1000", cols="10")
+    sheet.append_row(
+        ["Date", "City", "Temp (°F)", "Condition", "Humidity (%)", "Wind (mph)"]
+    )  # headers
+
+# Append a row for each city
+for row in weather_data:
+    sheet.append_row(row)
+
+print("✅ Weather data also logged to Google Sheet.")
+# --- END Google Sheets Upload ---
