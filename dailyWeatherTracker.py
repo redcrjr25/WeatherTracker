@@ -1,8 +1,22 @@
 import requests, csv, datetime
 from tabulate import tabulate
 import matplotlib.pyplot as plt
+from dotenv import load_dotenv
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
+
+# Load environment variables
+load_dotenv()
+
+# Get the path to the creds file from .env
+creds_path = os.getenv("GOOGLE_SERVICE_ACCOUNT_JSON")
+
+scope = [
+    "https://spreadsheets.google.com/feeds",
+    "https://www.googleapis.com/auth/drive",
+]
+creds = ServiceAccountCredentials.from_json_keyfile_name(creds_path, scope)
+client = gspread.authorize(creds)
 
 APPID = "1017e9154bbf1417b440db46b410de3a"
 

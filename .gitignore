@@ -1,4 +1,15 @@
-weather-creds.json
+# Byte-compiled files
 __pycache__/
 *.pyc
+
+# macOS system files
 .DS_Store
+
+# Environment variables
+.env
+
+# Google credentials
+weather-creds.json
+
+# Virtual environments
+.venv/
