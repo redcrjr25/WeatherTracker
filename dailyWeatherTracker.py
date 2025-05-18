@@ -3,12 +3,13 @@
 # Chris Redmond's Weather Project
 
 import os
-import requests, csv, datetime
+import requests, csv
 from tabulate import tabulate
 import matplotlib.pyplot as plt
 from dotenv import load_dotenv
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
+from datetime import datetime, date
 
 # Load environment variables
 load_dotenv()
@@ -42,7 +43,7 @@ cities = [
 ]
 
 url = "https://api.openweathermap.org/data/2.5/weather"
-today = datetime.date.today().isoformat()
+today = date.today().isoformat()
 
 weather_data = []
 display_data = []
@@ -61,6 +62,11 @@ for city in cities:
         humidity = data["main"]["humidity"]
         condition = data["weather"][0]["description"]
         wind_speed = data["wind"]["speed"]
+        sunrise_unix = data["sys"]["sunrise"]
+        sunset_unix = data["sys"]["sunset"]
+        # Convert to readable time
+        sunrise_time = datetime.fromtimestamp(sunrise_unix).strftime("%I:%M%p")
+        sunset_time = datetime.fromtimestamp(sunset_unix).strftime("%I:%M%p")
 
         display_data.append(
             [
@@ -70,11 +76,13 @@ for city in cities:
                 f"{humidity}%",
                 condition.title(),
                 f"{wind_speed} mph",
+                sunrise_time,
+                sunset_time,
             ]
         )
 
         print(
-            f"{city_name}: {temp}°F, {humidity}% humidity, {condition.title()}, Wind {wind_speed} mph"
+            f"{city_name}: {temp}°F, {humidity}% humidity, {condition.title()}, Wind {wind_speed} mph, Sunrise: {sunrise_time}, Sunset: {sunset_time}"
         )
         weather_data.append(
             [
@@ -85,6 +93,8 @@ for city in cities:
                 humidity,
                 condition,
                 wind_speed,
+                sunrise_time,
+                sunset_time,
             ]
         )
     except Exception as e:
@@ -99,6 +109,8 @@ for city in cities:
                 humidity,
                 condition,
                 wind_speed,
+                sunrise_time,
+                sunset_time,
             ]
         )
     except Exception as e:
@@ -107,7 +119,16 @@ for city in cities:
 print(
     tabulate(
         display_data,
-        headers=["City", "Temp", "Feels Like", "Humidity", "Condition", "Wind"],
+        headers=[
+            "City",
+            "Temp",
+            "Feels Like",
+            "Humidity",
+            "Condition",
+            "Wind",
+            "Sunrise",
+            "Sunset",
+        ],
     )
 )
 
@@ -162,6 +183,8 @@ with open(filename, "a", newline="") as file:
                 "Humidity (%)",
                 "Condition",
                 "Wind (mph)",
+                "Sunrise",
+                "Sunset",
             ]
         )
     writer.writerows(weather_data)
@@ -193,6 +216,8 @@ except gspread.exceptions.WorksheetNotFound:
             "Humidity (%)",
             "Condition",
             "Wind (mph)",
+            "Sunrise",
+            "Sunset",
         ]
     )  # headers
 
