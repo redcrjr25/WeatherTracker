@@ -55,35 +55,33 @@ for city in cities:
         data = response.json()
         city_name = city["name"]
         temp = data["main"]["temp"]
-        temp_max = data["main"]["temp_max"]
-        temp_min = data["main"]["temp_min"]
-        condition = data["weather"][0]["description"]
+        feels_like = data["main"]["feels_like"]
         humidity = data["main"]["humidity"]
+        condition = data["weather"][0]["description"]
         wind_speed = data["wind"]["speed"]
 
         display_data.append(
             [
                 city_name,
                 f"{temp:.1f}°F",
-                f"{temp_min:.1f}/{temp_max:.1f}°F",
-                condition.title(),
+                f"{feels_like:.1f}°F",
                 f"{humidity}%",
+                condition.title(),
                 f"{wind_speed} mph",
             ]
         )
 
         print(
-            f"{city_name}: {temp}°F, {condition.title()}, {humidity}% humidity, Wind {wind_speed} mph"
+            f"{city_name}: {temp}°F, {humidity}% humidity, {condition.title()}, Wind {wind_speed} mph"
         )
         weather_data.append(
             [
                 today,
                 city_name,
                 temp,
-                temp_min,
-                temp_max,
-                condition,
+                feels_like,
                 humidity,
+                condition,
                 wind_speed,
             ]
         )
@@ -95,10 +93,9 @@ for city in cities:
                 today,
                 city_name,
                 temp,
-                temp_min,
-                temp_max,
-                condition,
+                feels_like,
                 humidity,
+                condition,
                 wind_speed,
             ]
         )
@@ -107,7 +104,8 @@ for city in cities:
 
 print(
     tabulate(
-        display_data, headers=["City", "Temp", "Lo/Hi", "Condition", "Humidity", "Wind"]
+        display_data,
+        headers=["City", "Temp", "Feels Like", "Humidity", "Condition", "Wind"],
     )
 )
 
@@ -158,10 +156,9 @@ with open(filename, "a", newline="") as file:
                 "Date",
                 "City",
                 "Temp (F)",
-                "Lo (F)",
-                "Hi (F)",
-                "Condition",
+                "Feels Like (F)",
                 "Humidity (%)",
+                "Condition",
                 "Wind (mph)",
             ]
         )
@@ -190,10 +187,9 @@ except gspread.exceptions.WorksheetNotFound:
             "Date",
             "City",
             "Temp (°F)",
-            "Lo (F)",
-            "Hi (F)",
-            "Condition",
+            "Feels Like (F)",
             "Humidity (%)",
+            "Condition",
             "Wind (mph)",
         ]
     )  # headers
