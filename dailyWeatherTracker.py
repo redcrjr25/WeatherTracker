@@ -1,3 +1,6 @@
+# Chris Redmond's Weather Project
+
+import os
 import requests, csv, datetime
 from tabulate import tabulate
 import matplotlib.pyplot as plt
@@ -28,9 +31,11 @@ cities = [
     {"name": "Mt. Washington", "query": {"lat": 44.2706, "lon": -71.3033}},
     {"name": "New York", "query": {"q": "New York,US"}},
     {"name": "Cleveland", "query": {"q": "Cleveland,US"}},
+    {"name": "Tampa", "query": {"q": "Tampa, US"}},
     {"name": "Indianapolis", "query": {"q": "Indianapolis,US"}},
     {"name": "Chicago", "query": {"q": "Chicago,US"}},
     {"name": "Grand Canyon", "query": {"q": "Grand Canyon,US"}},
+    {"name": "Redmond", "query": {"q": "Redmond,WA,US"}},
     {"name": "Anchorage", "query": {"q": "Anchorage,AK,US"}},
 ]
 
@@ -110,8 +115,6 @@ ax2.tick_params(axis="y", labelcolor="lightcoral")
 plt.title(f"Temp & Wind Speed by City – {today}")
 fig.tight_layout()
 plt.show()
-
-import os
 
 # Write to CSV
 filename = "weather_log.csv"
