@@ -55,6 +55,8 @@ for city in cities:
         data = response.json()
         city_name = city["name"]
         temp = data["main"]["temp"]
+        temp_max = data["main"]["temp_max"]
+        temp_min = data["main"]["temp_min"]
         condition = data["weather"][0]["description"]
         humidity = data["main"]["humidity"]
         wind_speed = data["wind"]["speed"]
@@ -63,6 +65,7 @@ for city in cities:
             [
                 city_name,
                 f"{temp:.1f}°F",
+                f"{temp_min:.1f}/{temp_max:.1f}°F",
                 condition.title(),
                 f"{humidity}%",
                 f"{wind_speed} mph",
@@ -72,20 +75,46 @@ for city in cities:
         print(
             f"{city_name}: {temp}°F, {condition.title()}, {humidity}% humidity, Wind {wind_speed} mph"
         )
-        weather_data.append([today, city_name, temp, condition, humidity, wind_speed])
+        weather_data.append(
+            [
+                today,
+                city_name,
+                temp,
+                temp_min,
+                temp_max,
+                condition,
+                humidity,
+                wind_speed,
+            ]
+        )
     except Exception as e:
         print(f"Failed to get weather for {city['name']}: {e}")
 
-        weather_data.append([today, city_name, temp, condition, humidity, wind_speed])
+        weather_data.append(
+            [
+                today,
+                city_name,
+                temp,
+                temp_min,
+                temp_max,
+                condition,
+                humidity,
+                wind_speed,
+            ]
+        )
     except Exception as e:
         print(f"Failed to get weather for {city}: {e}")
 
-print(tabulate(display_data, headers=["City", "Temp", "Condition", "Humidity", "Wind"]))
+print(
+    tabulate(
+        display_data, headers=["City", "Temp", "Lo/Hi", "Condition", "Humidity", "Wind"]
+    )
+)
 
 # Plotting temperature and wind speed side by side
 cities_list = [row[0] for row in display_data]
 temps = [float(row[1].replace("°F", "")) for row in display_data]
-winds = [float(row[4].replace(" mph", "")) for row in display_data]
+winds = [float(row[5].replace(" mph", "")) for row in display_data]
 x = range(len(cities_list))
 
 fig, ax1 = plt.subplots(figsize=(12, 6))
@@ -114,6 +143,7 @@ ax2.tick_params(axis="y", labelcolor="lightcoral")
 # Title and layout
 plt.title(f"Temp & Wind Speed by City – {today}")
 fig.tight_layout()
+plt.savefig("weather_chart.png")
 plt.show()
 
 # Write to CSV
@@ -124,7 +154,16 @@ with open(filename, "a", newline="") as file:
     writer = csv.writer(file)
     if write_header:
         writer.writerow(
-            ["Date", "City", "Temp (F)", "Condition", "Humidity (%)", "Wind (mph)"]
+            [
+                "Date",
+                "City",
+                "Temp (F)",
+                "Lo (F)",
+                "Hi (F)",
+                "Condition",
+                "Humidity (%)",
+                "Wind (mph)",
+            ]
         )
     writer.writerows(weather_data)
 
@@ -147,7 +186,16 @@ try:
 except gspread.exceptions.WorksheetNotFound:
     sheet = spreadsheet.add_worksheet(title="Weather", rows="1000", cols="10")
     sheet.append_row(
-        ["Date", "City", "Temp (°F)", "Condition", "Humidity (%)", "Wind (mph)"]
+        [
+            "Date",
+            "City",
+            "Temp (°F)",
+            "Lo (F)",
+            "Hi (F)",
+            "Condition",
+            "Humidity (%)",
+            "Wind (mph)",
+        ]
     )  # headers
 
 # Append a row for each city
