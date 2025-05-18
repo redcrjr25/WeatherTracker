@@ -1,3 +1,5 @@
+#! /usr/bin/env python3
+
 # Chris Redmond's Weather Project
 
 import os
