@@ -10,6 +10,8 @@ from dotenv import load_dotenv
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 from datetime import datetime, date
+import smtplib
+from email.message import EmailMessage
 
 # Load environment variables
 load_dotenv()
@@ -131,6 +133,56 @@ print(
         ],
     )
 )
+
+# --- SEND EMAIL VERSION OF TABLE ---
+
+# Headers used in both plain text and HTML
+headers = [
+    "City",
+    "Temp",
+    "Feels Like",
+    "Humidity",
+    "Condition",
+    "Wind",
+    "Sunrise",
+    "Sunset",
+]
+
+# Plain text table (for fallback)
+table_text = tabulate(display_data, headers=headers)
+
+# HTML version of the table
+html_table = tabulate(display_data, headers=headers, tablefmt="html")
+
+# Email setup
+EMAIL_ADDRESS = os.getenv("MY_EMAIL")
+EMAIL_PASSWORD = os.getenv("MY_EMAIL_PASSWORD")
+
+msg = EmailMessage()
+msg["Subject"] = f"Daily Weather – {today}"
+msg["From"] = EMAIL_ADDRESS
+msg["To"] = ", ".join([EMAIL_ADDRESS, "indyredmond@comcast.net"])
+
+# Set both plain and HTML content
+msg.set_content(table_text)  # fallback for non-HTML email clients
+msg.add_alternative(
+    f"""\
+<html>
+  <body>
+    <p>🌤️ <strong>Here is your daily weather update for {today}:</strong></p>
+    {html_table}
+  </body>
+</html>
+""",
+    subtype="html",
+)
+
+# Send the email via Gmail
+with smtplib.SMTP_SSL("smtp.gmail.com", 465) as smtp:
+    smtp.login(EMAIL_ADDRESS, EMAIL_PASSWORD)
+    smtp.send_message(msg)
+
+print("✅ Weather table sent via email.")
 
 # Plotting temperature and wind speed side by side
 cities_list = [row[0] for row in display_data]
