@@ -1,0 +1,1 @@
+0 10 * * * /Users/cjr/Projects/AutomateTheBoringStuffWithPython/.venv/bin/python /Users/cjr/Projects/WeatherTracker/dailyWeatherTracker.py >> /Users/cjr/Projects/WeatherTracker/cron.log 2>&1

@@ -249,7 +249,9 @@ scope = [
     "https://spreadsheets.google.com/feeds",
     "https://www.googleapis.com/auth/drive",
 ]
-creds = ServiceAccountCredentials.from_json_keyfile_name("weather-creds.json", scope)
+creds = ServiceAccountCredentials.from_json_keyfile_name(
+    "/Users/cjr/Projects/WeatherTracker/weather-creds.json", scope
+)
 client = gspread.authorize(creds)
 
 # Open or create the spreadsheet
