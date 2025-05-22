@@ -6,3 +6,5 @@ Traceback (most recent call last):
   File "/Users/cjr/Projects/WeatherTracker/.venv/lib/python3.9/site-packages/oauth2client/service_account.py", line 219, in from_json_keyfile_name
     with open(filename, 'r') as file_obj:
 FileNotFoundError: [Errno 2] No such file or directory: 'weather-creds.json'
+zsh: command not found: 0
+/bin/sh: /Users/cjr/Projects/WeatherTracker/.venv/bin/python: No such file or directory
