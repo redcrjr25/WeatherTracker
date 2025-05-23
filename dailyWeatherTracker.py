@@ -17,7 +17,7 @@ from email.message import EmailMessage
 load_dotenv()
 
 # Get the path to the creds file from .env
-creds_path = os.getenv("GOOGLE_SERVICE_ACCOUNT_JSON")
+creds_path = "/Users/cjr/Projects/WeatherTracker/weather-creds.json"
 
 scope = [
     "https://spreadsheets.google.com/feeds",
