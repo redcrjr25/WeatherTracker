@@ -32,3 +32,69 @@ Anchorage       45.6°F  40.4°F        65%         Overcast Clouds       10.36 
 ✅ Weather data logged to weather_log.csv
 Google Sheet URL: https://docs.google.com/spreadsheets/d/1cVwXRfqLFNLNqxVaYGo0llIEeCNLCp_pdDNrAg0k1uQ
 ✅ Weather data also logged to Google Sheet.
+Vatican City: 69.84°F, 55% humidity, Scattered Clouds, Wind 10.36 mph, Sunrise: 11:43PM, Sunset: 02:31PM
+Munich: 55.17°F, 62% humidity, Broken Clouds, Wind 3 mph, Sunrise: 11:25PM, Sunset: 02:55PM
+Dublin: 60.94°F, 82% humidity, Light Rain, Wind 12.66 mph, Sunrise: 12:13AM, Sunset: 04:30PM
+Portland: 44.13°F, 94% humidity, Overcast Clouds, Wind 7 mph, Sunrise: 05:08AM, Sunset: 08:07PM
+Mt. Washington: 22.87°F, 97% humidity, Fog, Wind 9.22 mph, Sunrise: 05:10AM, Sunset: 08:13PM
+New York: 52.25°F, 89% humidity, Mist, Wind 8.05 mph, Sunrise: 05:32AM, Sunset: 08:13PM
+Cleveland: 50.85°F, 78% humidity, Scattered Clouds, Wind 23.02 mph, Sunrise: 06:00AM, Sunset: 08:46PM
+Tampa: 84.2°F, 57% humidity, Clear Sky, Wind 8.05 mph, Sunrise: 06:36AM, Sunset: 08:17PM
+Indianapolis: 60.76°F, 56% humidity, Clear Sky, Wind 11.5 mph, Sunrise: 06:23AM, Sunset: 08:59PM
+Chicago: 54.81°F, 67% humidity, Few Clouds, Wind 1.01 mph, Sunrise: 06:23AM, Sunset: 09:11PM
+Grand Canyon: 64.51°F, 17% humidity, Clear Sky, Wind 7.49 mph, Sunrise: 08:17AM, Sunset: 10:33PM
+Redmond: 51.55°F, 84% humidity, Few Clouds, Wind 1.01 mph, Sunrise: 08:21AM, Sunset: 11:49PM
+Anchorage: 44.4°F, 75% humidity, Broken Clouds, Wind 3.44 mph, Sunrise: 08:52AM, Sunset: 03:00AM
+City            Temp    Feels Like    Humidity    Condition         Wind       Sunrise    Sunset
+--------------  ------  ------------  ----------  ----------------  ---------  ---------  --------
+Vatican City    69.8°F  69.1°F        55%         Scattered Clouds  10.36 mph  11:43PM    02:31PM
+Munich          55.2°F  53.3°F        62%         Broken Clouds     3 mph      11:25PM    02:55PM
+Dublin          60.9°F  60.6°F        82%         Light Rain        12.66 mph  12:13AM    04:30PM
+Portland        44.1°F  40.1°F        94%         Overcast Clouds   7 mph      05:08AM    08:07PM
+Mt. Washington  22.9°F  12.9°F        97%         Fog               9.22 mph   05:10AM    08:13PM
+New York        52.2°F  51.4°F        89%         Mist              8.05 mph   05:32AM    08:13PM
+Cleveland       50.9°F  49.3°F        78%         Scattered Clouds  23.02 mph  06:00AM    08:46PM
+Tampa           84.2°F  87.1°F        57%         Clear Sky         8.05 mph   06:36AM    08:17PM
+Indianapolis    60.8°F  59.2°F        56%         Clear Sky         11.5 mph   06:23AM    08:59PM
+Chicago         54.8°F  53.1°F        67%         Few Clouds        1.01 mph   06:23AM    09:11PM
+Grand Canyon    64.5°F  61.5°F        17%         Clear Sky         7.49 mph   08:17AM    10:33PM
+Redmond         51.5°F  50.3°F        84%         Few Clouds        1.01 mph   08:21AM    11:49PM
+Anchorage       44.4°F  42.9°F        75%         Broken Clouds     3.44 mph   08:52AM    03:00AM
+✅ Weather table sent via email.
+
+✅ Weather data logged to weather_log.csv
+Google Sheet URL: https://docs.google.com/spreadsheets/d/1cVwXRfqLFNLNqxVaYGo0llIEeCNLCp_pdDNrAg0k1uQ
+✅ Weather data also logged to Google Sheet.
+Vatican City: 75.29°F, 33% humidity, Clear Sky, Wind 11.1 mph, Sunrise: 11:41PM, Sunset: 02:32PM
+Munich: 57.24°F, 90% humidity, Light Rain, Wind 1.99 mph, Sunrise: 11:23PM, Sunset: 02:58PM
+Dublin: 60.12°F, 65% humidity, Scattered Clouds, Wind 20.71 mph, Sunrise: 12:11AM, Sunset: 04:33PM
+Portland: 55.96°F, 64% humidity, Overcast Clouds, Wind 12.66 mph, Sunrise: 05:06AM, Sunset: 08:09PM
+Mt. Washington: 27.88°F, 98% humidity, Fog, Wind 34.52 mph, Sunrise: 05:08AM, Sunset: 08:15PM
+New York: 61.52°F, 56% humidity, Overcast Clouds, Wind 13.8 mph, Sunrise: 05:30AM, Sunset: 08:15PM
+Cleveland: 61.83°F, 60% humidity, Scattered Clouds, Wind 8.05 mph, Sunrise: 05:59AM, Sunset: 08:48PM
+Tampa: 86°F, 72% humidity, Scattered Clouds, Wind 5.75 mph, Sunrise: 06:35AM, Sunset: 08:18PM
+Indianapolis: 60.53°F, 67% humidity, Overcast Clouds, Wind 5.75 mph, Sunrise: 06:22AM, Sunset: 09:01PM
+Chicago: 52.72°F, 77% humidity, Overcast Clouds, Wind 8.05 mph, Sunrise: 06:22AM, Sunset: 09:13PM
+Grand Canyon: 60.19°F, 16% humidity, Broken Clouds, Wind 5.55 mph, Sunrise: 08:16AM, Sunset: 10:35PM
+Redmond: 55.08°F, 77% humidity, Broken Clouds, Wind 4 mph, Sunrise: 08:19AM, Sunset: 11:51PM
+Anchorage: 48.83°F, 76% humidity, Broken Clouds, Wind 10 mph, Sunrise: 08:48AM, Sunset: 03:05AM
+City            Temp    Feels Like    Humidity    Condition         Wind       Sunrise    Sunset
+--------------  ------  ------------  ----------  ----------------  ---------  ---------  --------
+Vatican City    75.3°F  74.1°F        33%         Clear Sky         11.1 mph   11:41PM    02:32PM
+Munich          57.2°F  56.9°F        90%         Light Rain        1.99 mph   11:23PM    02:58PM
+Dublin          60.1°F  58.9°F        65%         Scattered Clouds  20.71 mph  12:11AM    04:33PM
+Portland        56.0°F  54.3°F        64%         Overcast Clouds   12.66 mph  05:06AM    08:09PM
+Mt. Washington  27.9°F  15.3°F        98%         Fog               34.52 mph  05:08AM    08:15PM
+New York        61.5°F  60.0°F        56%         Overcast Clouds   13.8 mph   05:30AM    08:15PM
+Cleveland       61.8°F  60.5°F        60%         Scattered Clouds  8.05 mph   05:59AM    08:48PM
+Tampa           86.0°F  96.0°F        72%         Scattered Clouds  5.75 mph   06:35AM    08:18PM
+Indianapolis    60.5°F  59.4°F        67%         Overcast Clouds   5.75 mph   06:22AM    09:01PM
+Chicago         52.7°F  51.3°F        77%         Overcast Clouds   8.05 mph   06:22AM    09:13PM
+Grand Canyon    60.2°F  56.7°F        16%         Broken Clouds     5.55 mph   08:16AM    10:35PM
+Redmond         55.1°F  53.9°F        77%         Broken Clouds     4 mph      08:19AM    11:51PM
+Anchorage       48.8°F  44.6°F        76%         Broken Clouds     10 mph     08:48AM    03:05AM
+✅ Weather table sent via email.
+
+✅ Weather data logged to weather_log.csv
+Google Sheet URL: https://docs.google.com/spreadsheets/d/1cVwXRfqLFNLNqxVaYGo0llIEeCNLCp_pdDNrAg0k1uQ
+✅ Weather data also logged to Google Sheet.
